@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import Block from './Block'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+	let [count, setCount] = useState(0)
+	let [animal, setAnimal] = useState('Dog')
+	let [block, setBlock] = useState(false)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const addOne = () => setCount(count + 1)
+	const minOne = () => setCount(count - 1)
+	const setZero = () => setCount(0)
+
+	return (
+		<>
+			<h3>Count: {count}</h3>
+			<button onClick={addOne}>+1</button>
+			<button onClick={minOne}>-1</button>
+			<button onClick={setZero}>Reset</button>
+			<hr />
+			<h3>{animal}</h3>
+			<button onClick={() => setAnimal('Cat')}>Change animal</button>
+			<hr />
+			{block ? <Block /> : null}
+			<button onClick={() => setBlock(!block)}>Set Block</button>
+		</>
+	)
 }
 
 export default App
